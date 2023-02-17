@@ -15,6 +15,7 @@ const CSS_HANDLES = [
   'packageHeader',
   'packageShippingEstimate',
   'packageSLA',
+  'packageReceiverName',
   'packageGiftDescription',
   'packageAddressWrapper',
   'packageAddressTitle',
@@ -36,7 +37,7 @@ const DeliveryHeader: FC<Props> = ({
         className={`${applyModifiers(
           handles.packageHeader,
           'delivery'
-        )} t-heading-4-ns t-heading-5 mb5`}
+        )} t-heading-4-ns t-heading-5 `}
         data-testid="shipping-header"
       >
         <span className={`${handles.packageDeliveryTitle}`}>
@@ -61,10 +62,15 @@ const DeliveryHeader: FC<Props> = ({
         <small className={`${handles.packageSLA} c-muted-2 t-small`}>
           {shippingData.selectedSla}
         </small>
+        <br />
+        <br/>
+        <small className={`${handles.packageReceiverName} c-muted-2 t-small`}>
+          {shippingData.address.receiverName}
+        </small>
       </div>
 
       {giftRegistry &&
-      giftRegistry.addressId === shippingData.address.addressId ? (
+        giftRegistry.addressId === shippingData.address.addressId ? (
         <div className={`${handles.packageGiftDescription} c-muted-1`}>
           <span className={`${handles.packageAddressTitle} dn`}>
             <FormattedMessage id="store/shipping.header.address" />
@@ -75,7 +81,7 @@ const DeliveryHeader: FC<Props> = ({
           />
         </div>
       ) : (
-        <div className={`${handles.packageAddressWrapper} mb5 mr10-m`}>
+        <div className={`${handles.packageAddressWrapper} c-muted-2 t-small`}>
           <span className={`${handles.packageAddressTitle} dn`}>
             <FormattedMessage id="store/shipping.header.address" />
           </span>
